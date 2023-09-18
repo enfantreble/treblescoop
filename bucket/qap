@@ -1,0 +1,38 @@
+{
+    "##": "This file is a template. Fill the blanks and add or remove fields as necessary.",
+    "version": "",
+    "description": "Quick Access Popup: To everyone who needs a simple app to give quick access to folders, websites, etc.!",
+    "homepage": "https://www.quickaccesspopup.com/",
+    "license": "Freeware",
+    "notes": "",
+    "architecture": {
+        "64bit": {
+            "url": "https://www.quickaccesspopup.com/download/quickaccesspopup.zip",
+            "hash": "bc5065d3dd6e22c2d220213d6b16140f5497a9b25381fb26d8bb0d05ad3a4366"
+        },
+    },
+    "pre_install": "",
+    "installer": {
+        "script": ""
+    },
+    "post_install": [
+        "",
+        ""
+    ],
+    "uninstaller": {
+        "script": ""
+    },
+    "bin": "",
+    "env_add_path": [
+        "",
+        ""
+    ],
+
+  "autoupdate": {
+    "url": "https://www.quickaccesspopup.com/download/quickaccesspopup.zip"
+  },
+  "checkver": {
+    "regex": "Version: ([\\d.]+)",
+    "url": "https://www.quickaccesspopup.com/change-log/"
+  },
+}
