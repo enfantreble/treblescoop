@@ -80,14 +80,18 @@ class TrebleScoopUpdater:
             manifest.update(self._handle_ventoy(owner, repo, version, release))
         
         return manifest
-
+  # ... (keep all other methods the same)
     def _handle_chatbox(self, owner: str, repo: str, version: str, release: Dict) -> Dict:
         current_url = f"https://github.com/{owner}/{repo}/releases/download/v{version}/Chatbox.CE-{version}-Setup.exe#/dl.exe"
         
         return {
             "description": release.get("body", "").split("\n")[0].lstrip("> ").strip(),
-            "bin": ["Chatbox CE/Chatbox CE.exe"],
-            "shortcuts": [["Chatbox CE/Chatbox CE.exe", "Chatbox CE"]],
+            "bin": [
+                ["Chatbox CE\\Chatbox CE.exe", "chatbox"]  # Create alias without spaces
+            ],
+            "shortcuts": [
+                ["Chatbox CE\\Chatbox CE.exe", "Chatbox CE"]  # Use backslashes for Windows paths
+            ],
             "architecture": {
                 "64bit": {
                     "url": current_url,
@@ -110,7 +114,6 @@ class TrebleScoopUpdater:
             }
         }
 
-    # ... (keep all other methods the same)
     def update_manifests(self) -> None:
         if not self.config_path.exists():
             print(f"No config file found at {self.config_path}")

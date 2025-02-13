@@ -13,11 +13,14 @@
         }
     },
     "bin": [
-        "Chatbox CE/Chatbox CE.exe"
+        [
+            "Chatbox CE\\Chatbox CE.exe",
+            "chatbox"
+        ]
     ],
     "shortcuts": [
         [
-            "Chatbox CE/Chatbox CE.exe",
+            "Chatbox CE\\Chatbox CE.exe",
             "Chatbox CE"
         ]
     ],
