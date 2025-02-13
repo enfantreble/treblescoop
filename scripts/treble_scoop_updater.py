@@ -63,9 +63,15 @@ class TrebleScoopUpdater:
 
     def _generate_manifest(self, repo_full_name: str, release: Dict, patterns: Dict) -> Dict:
         owner, repo = repo_full_name.split("/")
+        
+        # Get first line of description without '>'
+        description = release.get("body", "").split("\n")[0]
+        if description.startswith(">"):
+            description = description[1:].strip()
+
         manifest = {
             "version": release["tag_name"].lstrip("v"),
-            "description": release.get("body", "").split("\n")[0] or f"{repo} - A GitHub release",
+            "description": description or f"{repo} - A GitHub release",
             "homepage": f"https://github.com/{repo_full_name}",
             "license": self._get_repo_license(owner, repo) or "Unknown",
             "notes": "",
@@ -86,29 +92,27 @@ class TrebleScoopUpdater:
                 "regex": "(?i)releases/tag/v?([\\d.]+)"
             },
             "autoupdate": {
-                "architecture": {},
-                "hash": {
-                    "url": "$url.sha256",
-                    "regex": "$sha256"
+                "architecture": {
+                    "64bit": {
+                        "url": f"https://github.com/{repo_full_name}/releases/download/v$version/{repo.lower()}-$version-windows-x64.exe"
+                    }
                 }
             }
         }
-
-        # Handle architecture-specific assets
         for arch, pattern in patterns.items():
+            print(f"Looking for {pattern} in release assets")
             asset = self._find_matching_asset(release["assets"], pattern)
             if asset:
+                print(f"Found asset: {asset['name']}")
                 url = asset["browser_download_url"]
                 manifest["architecture"][arch] = {
                     "url": url,
                     "hash": self._get_file_hash(url)
                 }
-                manifest["autoupdate"]["architecture"][arch] = {
-                    "url": url.replace(release["tag_name"], "$version")
-                }
+            else:
+                print(f"No matching asset found for pattern: {pattern}")
 
         return manifest
-
     def update_manifests(self) -> None:
         if not self.config_path.exists():
             print(f"No config file found at {self.config_path}")
