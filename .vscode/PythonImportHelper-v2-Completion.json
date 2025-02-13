@@ -1,0 +1,373 @@
+[
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "hashlib",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "hashlib",
+        "description": "hashlib",
+        "detail": "hashlib",
+        "documentation": {}
+    },
+    {
+        "label": "yaml",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "yaml",
+        "description": "yaml",
+        "detail": "yaml",
+        "documentation": {}
+    },
+    {
+        "label": "subprocess",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "subprocess",
+        "description": "subprocess",
+        "detail": "subprocess",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "TrebleScoopUpdater",
+        "importPath": "treble_scoop_updater",
+        "description": "treble_scoop_updater",
+        "isExtraImport": true,
+        "detail": "treble_scoop_updater",
+        "documentation": {}
+    },
+    {
+        "label": "TrebleScoopUpdater",
+        "importPath": "treble_scoop_updater",
+        "description": "treble_scoop_updater",
+        "isExtraImport": true,
+        "detail": "treble_scoop_updater",
+        "documentation": {}
+    },
+    {
+        "label": "TrebleScoopUpdater",
+        "kind": 6,
+        "importPath": ".history.scripts.treble_scoop_updater_20250213141922",
+        "description": ".history.scripts.treble_scoop_updater_20250213141922",
+        "peekOfCode": "class TrebleScoopUpdater:\n    def __init__(self, repo_path: Path, github_token: str):\n        self.repo_path = repo_path\n        self.bucket_path = repo_path / \"bucket\"\n        self.headers = {\"Authorization\": f\"token {github_token}\"}\n        self.config_path = repo_path / \"scripts\" / \"tracked_apps.yml\"\n        self._ensure_config()\n    def _ensure_config(self) -> None:\n        if not self.config_path.parent.exists():\n            self.config_path.parent.mkdir(parents=True)",
+        "detail": ".history.scripts.treble_scoop_updater_20250213141922",
+        "documentation": {}
+    },
+    {
+        "label": "TrebleScoopUpdater",
+        "kind": 6,
+        "importPath": ".history.scripts.treble_scoop_updater_20250213142634",
+        "description": ".history.scripts.treble_scoop_updater_20250213142634",
+        "peekOfCode": "class TrebleScoopUpdater:\n    def __init__(self, repo_path: Path, github_token: str):\n        self.repo_path = repo_path\n        self.bucket_path = repo_path / \"bucket\"\n        self.headers = {\"Authorization\": f\"token {github_token}\"}\n        self.config_path = repo_path / \"scripts\" / \"tracked_apps.yml\"\n        self._ensure_config()\n    def _ensure_config(self) -> None:\n        if not self.config_path.parent.exists():\n            self.config_path.parent.mkdir(parents=True)",
+        "detail": ".history.scripts.treble_scoop_updater_20250213142634",
+        "documentation": {}
+    },
+    {
+        "label": "TrebleScoopUpdater",
+        "kind": 6,
+        "importPath": ".history.scripts.treble_scoop_updater_20250213142654",
+        "description": ".history.scripts.treble_scoop_updater_20250213142654",
+        "peekOfCode": "class TrebleScoopUpdater:\n    def __init__(self, repo_path: Path, github_token: str):\n        self.repo_path = repo_path\n        self.bucket_path = repo_path / \"bucket\"\n        self.headers = {\"Authorization\": f\"token {github_token}\"}\n        self.config_path = repo_path / \"scripts\" / \"tracked_apps.yml\"\n        self._ensure_config()\n    def _ensure_config(self) -> None:\n        if not self.config_path.parent.exists():\n            self.config_path.parent.mkdir(parents=True)",
+        "detail": ".history.scripts.treble_scoop_updater_20250213142654",
+        "documentation": {}
+    },
+    {
+        "label": "TrebleScoopUpdater",
+        "kind": 6,
+        "importPath": "scripts.treble_scoop_updater",
+        "description": "scripts.treble_scoop_updater",
+        "peekOfCode": "class TrebleScoopUpdater:\n    def __init__(self, repo_path: Path, github_token: str):\n        self.repo_path = repo_path\n        self.bucket_path = repo_path / \"bucket\"\n        self.headers = {\"Authorization\": f\"token {github_token}\"}\n        self.config_path = repo_path / \"scripts\" / \"tracked_apps.yml\"\n        self._ensure_config()\n    def _ensure_config(self) -> None:\n        if not self.config_path.parent.exists():\n            self.config_path.parent.mkdir(parents=True)",
+        "detail": "scripts.treble_scoop_updater",
+        "documentation": {}
+    },
+    {
+        "label": "token",
+        "kind": 5,
+        "importPath": "debug_assets",
+        "description": "debug_assets",
+        "peekOfCode": "token = Path.home().joinpath(\".github_token\").read_text().strip()\nheaders = {\"Authorization\": f\"token {token}\"}\nprint(\"Fetching latest release info...\")\nresponse = requests.get(\n    \"https://api.github.com/repos/Bin-Huang/chatbox/releases/latest\",\n    headers=headers\n)\nif response.status_code == 200:\n    release = response.json()\n    print(f\"\\nLatest version: {release['tag_name']}\")",
+        "detail": "debug_assets",
+        "documentation": {}
+    },
+    {
+        "label": "headers",
+        "kind": 5,
+        "importPath": "debug_assets",
+        "description": "debug_assets",
+        "peekOfCode": "headers = {\"Authorization\": f\"token {token}\"}\nprint(\"Fetching latest release info...\")\nresponse = requests.get(\n    \"https://api.github.com/repos/Bin-Huang/chatbox/releases/latest\",\n    headers=headers\n)\nif response.status_code == 200:\n    release = response.json()\n    print(f\"\\nLatest version: {release['tag_name']}\")\n    print(\"\\nAvailable assets:\")",
+        "detail": "debug_assets",
+        "documentation": {}
+    },
+    {
+        "label": "response",
+        "kind": 5,
+        "importPath": "debug_assets",
+        "description": "debug_assets",
+        "peekOfCode": "response = requests.get(\n    \"https://api.github.com/repos/Bin-Huang/chatbox/releases/latest\",\n    headers=headers\n)\nif response.status_code == 200:\n    release = response.json()\n    print(f\"\\nLatest version: {release['tag_name']}\")\n    print(\"\\nAvailable assets:\")\n    for asset in release['assets']:\n        print(f\"- {asset['name']}\")",
+        "detail": "debug_assets",
+        "documentation": {}
+    },
+    {
+        "label": "repo_path",
+        "kind": 5,
+        "importPath": "test_bucket_updater",
+        "description": "test_bucket_updater",
+        "peekOfCode": "repo_path = Path.cwd()\n# Read token\ntoken = Path.home().joinpath(\".github_token\").read_text().strip()\n# Initialize updater\nupdater = TrebleScoopUpdater(repo_path, token)\n# Test with a specific app - let's try something smaller first\nupdater.track_app(\"OpenVPN\", \"openvpn-build\", {\n    \"64bit\": \"win10-amd64\",\n})\n# Run the update",
+        "detail": "test_bucket_updater",
+        "documentation": {}
+    },
+    {
+        "label": "token",
+        "kind": 5,
+        "importPath": "test_bucket_updater",
+        "description": "test_bucket_updater",
+        "peekOfCode": "token = Path.home().joinpath(\".github_token\").read_text().strip()\n# Initialize updater\nupdater = TrebleScoopUpdater(repo_path, token)\n# Test with a specific app - let's try something smaller first\nupdater.track_app(\"OpenVPN\", \"openvpn-build\", {\n    \"64bit\": \"win10-amd64\",\n})\n# Run the update\nprint(\"Starting manifest update...\")\nupdater.update_manifests()",
+        "detail": "test_bucket_updater",
+        "documentation": {}
+    },
+    {
+        "label": "updater",
+        "kind": 5,
+        "importPath": "test_bucket_updater",
+        "description": "test_bucket_updater",
+        "peekOfCode": "updater = TrebleScoopUpdater(repo_path, token)\n# Test with a specific app - let's try something smaller first\nupdater.track_app(\"OpenVPN\", \"openvpn-build\", {\n    \"64bit\": \"win10-amd64\",\n})\n# Run the update\nprint(\"Starting manifest update...\")\nupdater.update_manifests()",
+        "detail": "test_bucket_updater",
+        "documentation": {}
+    },
+    {
+        "label": "repo_path",
+        "kind": 5,
+        "importPath": "test_chatbox",
+        "description": "test_chatbox",
+        "peekOfCode": "repo_path = Path.cwd()\ntoken = Path.home().joinpath(\".github_token\").read_text().strip()\nupdater = TrebleScoopUpdater(repo_path, token)\n# Let's use their exact release pattern for Windows\nupdater.track_app(\"Bin-Huang\", \"chatbox\", {\n    \"64bit\": \"-windows-x64.exe\"  # More general pattern to match any version\n})\nprint(\"Starting manifest update...\")\nupdater.update_manifests()",
+        "detail": "test_chatbox",
+        "documentation": {}
+    },
+    {
+        "label": "token",
+        "kind": 5,
+        "importPath": "test_chatbox",
+        "description": "test_chatbox",
+        "peekOfCode": "token = Path.home().joinpath(\".github_token\").read_text().strip()\nupdater = TrebleScoopUpdater(repo_path, token)\n# Let's use their exact release pattern for Windows\nupdater.track_app(\"Bin-Huang\", \"chatbox\", {\n    \"64bit\": \"-windows-x64.exe\"  # More general pattern to match any version\n})\nprint(\"Starting manifest update...\")\nupdater.update_manifests()",
+        "detail": "test_chatbox",
+        "documentation": {}
+    },
+    {
+        "label": "updater",
+        "kind": 5,
+        "importPath": "test_chatbox",
+        "description": "test_chatbox",
+        "peekOfCode": "updater = TrebleScoopUpdater(repo_path, token)\n# Let's use their exact release pattern for Windows\nupdater.track_app(\"Bin-Huang\", \"chatbox\", {\n    \"64bit\": \"-windows-x64.exe\"  # More general pattern to match any version\n})\nprint(\"Starting manifest update...\")\nupdater.update_manifests()",
+        "detail": "test_chatbox",
+        "documentation": {}
+    }
+]

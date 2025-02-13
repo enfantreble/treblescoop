@@ -60,6 +60,7 @@ class TrebleScoopUpdater:
         except:
             pass
         return None
+
     def _generate_manifest(self, repo_full_name: str, release: Dict, patterns: Dict) -> Dict:
         owner, repo = repo_full_name.split("/")
         version = release["tag_name"].lstrip("v")
@@ -85,10 +86,7 @@ class TrebleScoopUpdater:
             "uninstaller": {
                 "script": ""
             },
-            "bin": ["Chatbox CE/Chatbox CE.exe"],
-            "shortcuts": [
-                ["Chatbox CE/Chatbox CE.exe", "Chatbox CE"]
-            ],
+            "bin": ["chatbox.exe"],
             "env_add_path": [""],
             "persist": [""],
             "checkver": {
@@ -98,26 +96,124 @@ class TrebleScoopUpdater:
             "autoupdate": {
                 "architecture": {
                     "64bit": {
-                        "url": f"https://github.com/{repo_full_name}/releases/download/v$version/Chatbox.CE-$version-Setup.exe#/dl.exe"
+                        "url": f"https://github.com/{repo_full_name}/releases/download/v$version/{repo.lower()}-$version-windows-x64.exe"
                     }
                 }
             }
         }
 
         # Current version URL and hash
-        current_url = f"https://github.com/{repo_full_name}/releases/download/v{version}/Chatbox.CE-{version}-Setup.exe#/dl.exe"
+        exe_name = f"{repo.lower()}-{version}-windows-x64.exe"
+        current_url = f"https://github.com/{repo_full_name}/releases/download/v{version}/{exe_name}"
         
         manifest["architecture"]["64bit"] = {
             "url": current_url,
-            "hash": self._get_file_hash(current_url.split('#')[0]),
-            "installer": {
-                "script": "Start-Process -Wait \"$dir\\dl.exe\" -ArgumentList \"/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP- /DIR=`\"$dir\\Chatbox CE`\"\"" 
-            }
+            "hash": self._get_file_hash(current_url)
         }
 
         return manifest
 
-    # ... (keep all other methods the same)
+        version = release["tag_name"].lstrip("v")
+        
+        # Get first line of description and clean it
+        description = release.get("body", "").split("\n")[0]
+        if description.startswith(">"):
+            description = description[1:].strip()
+
+        # Base manifest structure
+        manifest = {
+            "version": version,
+            "description": description or f"{repo} - A GitHub release",
+            "homepage": f"https://github.com/{repo_full_name}",
+            "license": self._get_repo_license(owner, repo) or "Unknown",
+            "notes": "",
+            "architecture": {},
+            "pre_install": "",
+            "installer": {
+                "script": ""
+            },
+            "post_install": [""],
+            "uninstaller": {
+                "script": ""
+            },
+            "bin": ["chatbox.exe"],
+            "env_add_path": [""],
+            "persist": [""],
+            "checkver": {
+                "github": f"https://github.com/{repo_full_name}",
+                "regex": "(?i)releases/tag/v?([\\d.]+)"
+            },
+            "autoupdate": {
+                "architecture": {
+                    "64bit": {
+                        "url": f"https://github.com/{repo_full_name}/releases/download/v$version/{repo.lower()}-$version-windows-x64.exe"
+                    }
+                }
+            }
+        }
+
+        # Current version URL and hash
+        exe_name = f"{repo.lower()}-{version}-windows-x64.exe"
+        current_url = f"https://github.com/{repo_full_name}/releases/download/v{version}/{exe_name}"
+        
+        manifest["architecture"]["64bit"] = {
+            "url": current_url,
+            "hash": self._get_file_hash(current_url)
+        }
+
+        return manifest
+        
+        owner, repo = repo_full_name.split("/")
+        
+        # Get first line of description without '>'
+        description = release.get("body", "").split("\n")[0]
+        if description.startswith(">"):
+            description = description[1:].strip()
+
+        manifest = {
+            "version": release["tag_name"].lstrip("v"),
+            "description": description or f"{repo} - A GitHub release",
+            "homepage": f"https://github.com/{repo_full_name}",
+            "license": self._get_repo_license(owner, repo) or "Unknown",
+            "notes": "",
+            "architecture": {},
+            "pre_install": "",
+            "installer": {
+                "script": ""
+            },
+            "post_install": [""],
+            "uninstaller": {
+                "script": ""
+            },
+            "bin": "",
+            "env_add_path": [""],
+            "persist": [""],
+            "checkver": {
+                "github": f"https://github.com/{repo_full_name}",
+                "regex": "(?i)releases/tag/v?([\\d.]+)"
+            },
+            "autoupdate": {
+                "architecture": {
+                    "64bit": {
+                        "url": f"https://github.com/{repo_full_name}/releases/download/v$version/{repo.lower()}-$version-windows-x64.exe"
+                    }
+                }
+            }
+        }
+        for arch, pattern in patterns.items():
+            print(f"Looking for {pattern} in release assets")
+            asset = self._find_matching_asset(release["assets"], pattern)
+            if asset:
+                print(f"Found asset: {asset['name']}")
+                url = asset["browser_download_url"]
+                manifest["architecture"][arch] = {
+                    "url": url,
+                    "hash": self._get_file_hash(url)
+                }
+            else:
+                print(f"No matching asset found for pattern: {pattern}")
+
+        return manifest
     def update_manifests(self) -> None:
         if not self.config_path.exists():
             print(f"No config file found at {self.config_path}")

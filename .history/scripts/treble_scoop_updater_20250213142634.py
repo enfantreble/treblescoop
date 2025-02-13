@@ -60,64 +60,7 @@ class TrebleScoopUpdater:
         except:
             pass
         return None
-    def _generate_manifest(self, repo_full_name: str, release: Dict, patterns: Dict) -> Dict:
-        owner, repo = repo_full_name.split("/")
-        version = release["tag_name"].lstrip("v")
-        
-        # Get first line of description and clean it
-        description = release.get("body", "").split("\n")[0]
-        if description.startswith(">"):
-            description = description[1:].strip()
 
-        # Base manifest structure
-        manifest = {
-            "version": version,
-            "description": description or f"{repo} - A GitHub release",
-            "homepage": f"https://github.com/{repo_full_name}",
-            "license": self._get_repo_license(owner, repo) or "Unknown",
-            "notes": "",
-            "architecture": {},
-            "pre_install": "",
-            "installer": {
-                "script": ""
-            },
-            "post_install": [""],
-            "uninstaller": {
-                "script": ""
-            },
-            "bin": ["Chatbox CE/Chatbox CE.exe"],
-            "shortcuts": [
-                ["Chatbox CE/Chatbox CE.exe", "Chatbox CE"]
-            ],
-            "env_add_path": [""],
-            "persist": [""],
-            "checkver": {
-                "github": f"https://github.com/{repo_full_name}",
-                "regex": "(?i)releases/tag/v?([\\d.]+)"
-            },
-            "autoupdate": {
-                "architecture": {
-                    "64bit": {
-                        "url": f"https://github.com/{repo_full_name}/releases/download/v$version/Chatbox.CE-$version-Setup.exe#/dl.exe"
-                    }
-                }
-            }
-        }
-
-        # Current version URL and hash
-        current_url = f"https://github.com/{repo_full_name}/releases/download/v{version}/Chatbox.CE-{version}-Setup.exe#/dl.exe"
-        
-        manifest["architecture"]["64bit"] = {
-            "url": current_url,
-            "hash": self._get_file_hash(current_url.split('#')[0]),
-            "installer": {
-                "script": "Start-Process -Wait \"$dir\\dl.exe\" -ArgumentList \"/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP- /DIR=`\"$dir\\Chatbox CE`\"\"" 
-            }
-        }
-
-        return manifest
-
-    # ... (keep all other methods the same)
     def update_manifests(self) -> None:
         if not self.config_path.exists():
             print(f"No config file found at {self.config_path}")
