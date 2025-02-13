@@ -64,58 +64,51 @@ class TrebleScoopUpdater:
         owner, repo = repo_full_name.split("/")
         version = release["tag_name"].lstrip("v")
         
-        # Get first line of description and clean it
-        description = release.get("body", "").split("\n")[0]
-        if description.startswith(">"):
-            description = description[1:].strip()
-
-        # Base manifest structure
+        # Base manifest structure with empty fields
         manifest = {
             "version": version,
-            "description": description or f"{repo} - A GitHub release",
+            "description": "",
             "homepage": f"https://github.com/{repo_full_name}",
             "license": self._get_repo_license(owner, repo) or "Unknown",
-            "notes": "",
-            "architecture": {},
-            "pre_install": "",
-            "installer": {
-                "script": ""
-            },
-            "post_install": [""],
-            "uninstaller": {
-                "script": ""
-            },
+            "architecture": {}
+        }
+
+        # Special handling for different apps
+        if repo.lower() == "chatbox":
+            manifest.update(self._handle_chatbox(owner, repo, version, release))
+        elif repo.lower() == "ventoy":
+            manifest.update(self._handle_ventoy(owner, repo, version, release))
+        
+        return manifest
+
+    def _handle_chatbox(self, owner: str, repo: str, version: str, release: Dict) -> Dict:
+        current_url = f"https://github.com/{owner}/{repo}/releases/download/v{version}/Chatbox.CE-{version}-Setup.exe#/dl.exe"
+        
+        return {
+            "description": release.get("body", "").split("\n")[0].lstrip("> ").strip(),
             "bin": ["Chatbox CE/Chatbox CE.exe"],
-            "shortcuts": [
-                ["Chatbox CE/Chatbox CE.exe", "Chatbox CE"]
-            ],
-            "env_add_path": [""],
-            "persist": [""],
+            "shortcuts": [["Chatbox CE/Chatbox CE.exe", "Chatbox CE"]],
+            "architecture": {
+                "64bit": {
+                    "url": current_url,
+                    "hash": self._get_file_hash(current_url.split('#')[0]),
+                    "installer": {
+                        "script": "Start-Process -Wait \"$dir\\dl.exe\" -ArgumentList \"/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP- /DIR=`\"$dir\\Chatbox CE`\"\"" 
+                    }
+                }
+            },
             "checkver": {
-                "github": f"https://github.com/{repo_full_name}",
+                "github": f"https://github.com/{owner}/{repo}",
                 "regex": "(?i)releases/tag/v?([\\d.]+)"
             },
             "autoupdate": {
                 "architecture": {
                     "64bit": {
-                        "url": f"https://github.com/{repo_full_name}/releases/download/v$version/Chatbox.CE-$version-Setup.exe#/dl.exe"
+                        "url": f"https://github.com/{owner}/{repo}/releases/download/v$version/Chatbox.CE-$version-Setup.exe#/dl.exe"
                     }
                 }
             }
         }
-
-        # Current version URL and hash
-        current_url = f"https://github.com/{repo_full_name}/releases/download/v{version}/Chatbox.CE-{version}-Setup.exe#/dl.exe"
-        
-        manifest["architecture"]["64bit"] = {
-            "url": current_url,
-            "hash": self._get_file_hash(current_url.split('#')[0]),
-            "installer": {
-                "script": "Start-Process -Wait \"$dir\\dl.exe\" -ArgumentList \"/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP- /DIR=`\"$dir\\Chatbox CE`\"\"" 
-            }
-        }
-
-        return manifest
 
     # ... (keep all other methods the same)
     def update_manifests(self) -> None:
@@ -182,3 +175,27 @@ class TrebleScoopUpdater:
             print(f"Command output: {e.output if hasattr(e, 'output') else 'No output'}")
         except Exception as e:
             print(f"Error during git operations: {e}")
+
+    def _handle_ventoy(self, owner: str, repo: str, version: str, release: Dict) -> Dict:
+        current_url = f"https://github.com/{owner}/{repo}/releases/download/v{version}/ventoy-{version}-windows.zip"
+        
+        return {
+            "description": release.get("body", "").split("\n")[0].strip(),
+            "architecture": {
+                "64bit": {
+                    "url": current_url,
+                    "hash": self._get_file_hash(current_url)
+                }
+            },
+            "checkver": {
+                "github": f"https://github.com/{owner}/{repo}",
+                "regex": "(?i)releases/tag/v?([\\d.]+)"
+            },
+            "autoupdate": {
+                "architecture": {
+                    "64bit": {
+                        "url": f"https://github.com/{owner}/{repo}/releases/download/v$version/ventoy-$version-windows.zip"
+                    }
+                }
+            }
+        }

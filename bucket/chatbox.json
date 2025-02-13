@@ -3,7 +3,6 @@
     "description": "This is a new release of the Chatbox Community Edition. For most users, it's highly recommended to use the Official Edition instead - it's still free and comes with more new features. You can get it here:",
     "homepage": "https://github.com/Bin-Huang/chatbox",
     "license": "GPL-3.0",
-    "notes": "",
     "architecture": {
         "64bit": {
             "url": "https://github.com/Bin-Huang/chatbox/releases/download/v0.10.4/Chatbox.CE-0.10.4-Setup.exe#/dl.exe",
@@ -13,16 +12,6 @@
             }
         }
     },
-    "pre_install": "",
-    "installer": {
-        "script": ""
-    },
-    "post_install": [
-        ""
-    ],
-    "uninstaller": {
-        "script": ""
-    },
     "bin": [
         "Chatbox CE/Chatbox CE.exe"
     ],
@@ -31,12 +20,6 @@
             "Chatbox CE/Chatbox CE.exe",
             "Chatbox CE"
         ]
-    ],
-    "env_add_path": [
-        ""
-    ],
-    "persist": [
-        ""
     ],
     "checkver": {
         "github": "https://github.com/Bin-Huang/chatbox",

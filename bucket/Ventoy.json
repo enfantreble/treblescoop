@@ -1,43 +1,14 @@
 {
     "version": "1.1.02",
-    "description": "\r",
+    "description": "",
     "homepage": "https://github.com/ventoy/Ventoy",
     "license": "GPL-3.0",
-    "notes": "",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/ventoy/Ventoy/releases/download/v1.1.02/Chatbox.CE-1.1.02-Setup.exe#/dl.exe",
-            "hash": "0019dfc4b32d63c1392aa264aed2253c1e0c2fb09216f8e2cc269bbfb8bb49b5",
-            "installer": {
-                "script": "Start-Process -Wait \"$dir\\dl.exe\" -ArgumentList \"/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP- /DIR=`\"$dir\\Chatbox CE`\"\""
-            }
+            "url": "https://github.com/ventoy/Ventoy/releases/download/v1.1.02/ventoy-1.1.02-windows.zip",
+            "hash": "f992fb0569a2f9ec057c7d97800a13ead7acc57a758953800d8d958d0ae471dc"
         }
     },
-    "pre_install": "",
-    "installer": {
-        "script": ""
-    },
-    "post_install": [
-        ""
-    ],
-    "uninstaller": {
-        "script": ""
-    },
-    "bin": [
-        "Chatbox CE/Chatbox CE.exe"
-    ],
-    "shortcuts": [
-        [
-            "Chatbox CE/Chatbox CE.exe",
-            "Chatbox CE"
-        ]
-    ],
-    "env_add_path": [
-        ""
-    ],
-    "persist": [
-        ""
-    ],
     "checkver": {
         "github": "https://github.com/ventoy/Ventoy",
         "regex": "(?i)releases/tag/v?([\\d.]+)"
@@ -45,7 +16,7 @@
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/ventoy/Ventoy/releases/download/v$version/Chatbox.CE-$version-Setup.exe#/dl.exe"
+                "url": "https://github.com/ventoy/Ventoy/releases/download/v$version/ventoy-$version-windows.zip"
             }
         }
     }
