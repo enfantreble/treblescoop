@@ -7,11 +7,10 @@ repo_path = Path.cwd()
 token = Path.home().joinpath(".github_token").read_text().strip()
 updater = TrebleScoopUpdater(repo_path, token)
 
-# Let's use their exact release pattern for Windows
-updater.track_app("Bin-Huang", "chatbox", {
-    "64bit": "-windows-x64.exe"  # More general pattern to match any version
+# Dive uses patterns like: dive_0.9.2_windows_amd64.zip
+updater.track_app("wagoodman", "dive", {
+    "64bit": "windows_amd64.zip"
 })
 
 print("Starting manifest update...")
 updater.update_manifests()
-

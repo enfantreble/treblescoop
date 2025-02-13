@@ -11,3 +11,7 @@ apps:
     last_checked: '2025-02-12T15:29:04Z'
     patterns:
       64bit: windows
+  wagoodman/dive:
+    last_checked: '2024-02-02T15:44:50Z'
+    patterns:
+      64bit: windows_amd64.zip

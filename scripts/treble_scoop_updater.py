@@ -20,7 +20,7 @@ class TrebleScoopUpdater:
             self.config_path.parent.mkdir(parents=True)
         if not self.config_path.exists():
             self.config_path.write_text(yaml.dump({"apps": {}}))
-    
+
     def track_app(self, owner: str, repo: str, patterns: Dict[str, str]) -> None:
         config = yaml.safe_load(self.config_path.read_text())
         config["apps"] = config.get("apps", {})
@@ -43,12 +43,6 @@ class TrebleScoopUpdater:
                 sha256_hash.update(chunk)
         return sha256_hash.hexdigest()
 
-    def _find_matching_asset(self, assets: List[Dict], pattern: str) -> Optional[Dict]:
-        for asset in assets:
-            if pattern.lower() in asset["name"].lower():
-                return asset
-        return None
-
     def _get_repo_license(self, owner: str, repo: str) -> Optional[str]:
         try:
             resp = requests.get(
@@ -60,38 +54,40 @@ class TrebleScoopUpdater:
         except:
             pass
         return None
-    def _generate_manifest(self, repo_full_name: str, release: Dict, patterns: Dict) -> Dict:
-        owner, repo = repo_full_name.split("/")
-        version = release["tag_name"].lstrip("v")
+
+    def _handle_dive(self, owner: str, repo: str, version: str, release: Dict) -> Dict:
+        clean_version = version.lstrip('v')
+        current_url = f"https://github.com/{owner}/{repo}/releases/download/v{clean_version}/dive_{clean_version}_windows_amd64.zip"
         
-        # Base manifest structure with empty fields
-        manifest = {
-            "version": version,
-            "description": "",
-            "homepage": f"https://github.com/{repo_full_name}",
-            "license": self._get_repo_license(owner, repo) or "Unknown",
-            "architecture": {}
+        return {
+            "description": "A tool for exploring a docker image, layer contents, and discovering ways to shrink the size of your Docker/OCI image",
+            "bin": "dive.exe",
+            "architecture": {
+                "64bit": {
+                    "url": current_url,
+                    "hash": self._get_file_hash(current_url)
+                }
+            },
+            "checkver": {
+                "github": f"https://github.com/{owner}/{repo}",
+                "regex": "(?i)releases/tag/v?([\\d.]+)"
+            },
+            "autoupdate": {
+                "architecture": {
+                    "64bit": {
+                        "url": f"https://github.com/{owner}/{repo}/releases/download/v$version/dive_$version_windows_amd64.zip"
+                    }
+                }
+            }
         }
 
-        # Special handling for different apps
-        if repo.lower() == "chatbox":
-            manifest.update(self._handle_chatbox(owner, repo, version, release))
-        elif repo.lower() == "ventoy":
-            manifest.update(self._handle_ventoy(owner, repo, version, release))
-        
-        return manifest
-  # ... (keep all other methods the same)
     def _handle_chatbox(self, owner: str, repo: str, version: str, release: Dict) -> Dict:
         current_url = f"https://github.com/{owner}/{repo}/releases/download/v{version}/Chatbox.CE-{version}-Setup.exe#/dl.exe"
         
         return {
             "description": release.get("body", "").split("\n")[0].lstrip("> ").strip(),
-            "bin": [
-                ["Chatbox CE\\Chatbox CE.exe", "chatbox"]  # Create alias without spaces
-            ],
-            "shortcuts": [
-                ["Chatbox CE\\Chatbox CE.exe", "Chatbox CE"]  # Use backslashes for Windows paths
-            ],
+            "bin": [["Chatbox CE\\Chatbox CE.exe", "chatbox"]],
+            "shortcuts": [["Chatbox CE\\Chatbox CE.exe", "Chatbox CE"]],
             "architecture": {
                 "64bit": {
                     "url": current_url,
@@ -113,6 +109,25 @@ class TrebleScoopUpdater:
                 }
             }
         }
+
+    def _generate_manifest(self, repo_full_name: str, release: Dict, patterns: Dict) -> Dict:
+        owner, repo = repo_full_name.split("/")
+        version = release["tag_name"].lstrip("v")
+        
+        manifest = {
+            "version": version,
+            "description": "",
+            "homepage": f"https://github.com/{repo_full_name}",
+            "license": self._get_repo_license(owner, repo) or "Unknown",
+            "architecture": {}
+        }
+
+        if repo.lower() == "dive":
+            manifest.update(self._handle_dive(owner, repo, version, release))
+        elif repo.lower() == "chatbox":
+            manifest.update(self._handle_chatbox(owner, repo, version, release))
+        
+        return manifest
 
     def update_manifests(self) -> None:
         if not self.config_path.exists():
@@ -178,27 +193,3 @@ class TrebleScoopUpdater:
             print(f"Command output: {e.output if hasattr(e, 'output') else 'No output'}")
         except Exception as e:
             print(f"Error during git operations: {e}")
-
-    def _handle_ventoy(self, owner: str, repo: str, version: str, release: Dict) -> Dict:
-        current_url = f"https://github.com/{owner}/{repo}/releases/download/v{version}/ventoy-{version}-windows.zip"
-        
-        return {
-            "description": release.get("body", "").split("\n")[0].strip(),
-            "architecture": {
-                "64bit": {
-                    "url": current_url,
-                    "hash": self._get_file_hash(current_url)
-                }
-            },
-            "checkver": {
-                "github": f"https://github.com/{owner}/{repo}",
-                "regex": "(?i)releases/tag/v?([\\d.]+)"
-            },
-            "autoupdate": {
-                "architecture": {
-                    "64bit": {
-                        "url": f"https://github.com/{owner}/{repo}/releases/download/v$version/ventoy-$version-windows.zip"
-                    }
-                }
-            }
-        }
