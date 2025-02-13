@@ -83,15 +83,52 @@ class TrebleScoopUpdater:
                 print(f"No matching assets found for {repo}")
         self.config_path.write_text(yaml.dump(config))
         self._commit_changes()
+    def _get_current_branch(self) -> str:
+        try:
+            result = subprocess.run(
+                ["git", "rev-parse", "--abbrev-ref", "HEAD"],
+                cwd=self.repo_path,
+                capture_output=True,
+                text=True,
+                check=True
+            )
+            return result.stdout.strip()
+        except subprocess.CalledProcessError:
+            return "master"  # fallback to master if command fails
     def _commit_changes(self) -> None:
         try:
-            status = subprocess.run(["git", "status", "--porcelain"], cwd=self.repo_path, capture_output=True, text=True)
+            status = subprocess.run(
+                ["git", "status", "--porcelain"],
+                cwd=self.repo_path,
+                capture_output=True,
+                text=True
+            )
             if status.stdout.strip():
-                subprocess.run(["git", "add", "."], cwd=self.repo_path)
-                subprocess.run(["git", "commit", "-m", f"Updated manifests {datetime.now().isoformat()}"], cwd=self.repo_path)
-                subprocess.run(["git", "push", "origin", "main"], cwd=self.repo_path)
-                print("Changes committed and pushed")
+                # Add files
+                subprocess.run(["git", "add", "."], cwd=self.repo_path, check=True)
+                
+                # Commit changes
+                subprocess.run(
+                    ["git", "commit", "-m", f"Updated manifests {datetime.now().isoformat()}"],
+                    cwd=self.repo_path,
+                    check=True
+                )
+                
+                # Get current branch
+                branch = self._get_current_branch()
+                print(f"Pushing to branch: {branch}")
+                
+                # Push to the current branch
+                subprocess.run(
+                    ["git", "push", "origin", branch],
+                    cwd=self.repo_path,
+                    check=True
+                )
+                print("Changes committed and pushed successfully")
             else:
                 print("No changes to commit")
+        except subprocess.CalledProcessError as e:
+            print(f"Git operation failed: {e}")
+            print(f"Command output: {e.output if hasattr(e, 'output') else 'No output'}")
         except Exception as e:
             print(f"Error during git operations: {e}")
