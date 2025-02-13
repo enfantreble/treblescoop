@@ -7,9 +7,9 @@ repo_path = Path.cwd()
 token = Path.home().joinpath(".github_token").read_text().strip()
 updater = TrebleScoopUpdater(repo_path, token)
 
-# Chatbox uses this exact pattern for releases
+# Let's use their exact release pattern for Windows
 updater.track_app("Bin-Huang", "chatbox", {
-    "64bit": "chatbox-0.10.4-windows-x64.exe"  # This pattern matches the current release
+    "64bit": "-windows-x64.exe"  # More general pattern to match any version
 })
 
 print("Starting manifest update...")

@@ -2,7 +2,7 @@ apps:
   Bin-Huang/chatbox:
     last_checked: '2025-01-14T13:29:06Z'
     patterns:
-      64bit: chatbox-0.10.4-windows-x64.exe
+      64bit: -windows-x64.exe
   OpenVPN/openvpn-build:
     last_checked: null
     patterns:
