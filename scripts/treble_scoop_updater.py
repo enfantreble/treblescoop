@@ -63,6 +63,107 @@ class TrebleScoopUpdater:
 
     def _generate_manifest(self, repo_full_name: str, release: Dict, patterns: Dict) -> Dict:
         owner, repo = repo_full_name.split("/")
+        version = release["tag_name"].lstrip("v")
+        
+        # Get first line of description and clean it
+        description = release.get("body", "").split("\n")[0]
+        if description.startswith(">"):
+            description = description[1:].strip()
+
+        # Base manifest structure
+        manifest = {
+            "version": version,
+            "description": description or f"{repo} - A GitHub release",
+            "homepage": f"https://github.com/{repo_full_name}",
+            "license": self._get_repo_license(owner, repo) or "Unknown",
+            "notes": "",
+            "architecture": {},
+            "pre_install": "",
+            "installer": {
+                "script": ""
+            },
+            "post_install": [""],
+            "uninstaller": {
+                "script": ""
+            },
+            "bin": ["chatbox.exe"],
+            "env_add_path": [""],
+            "persist": [""],
+            "checkver": {
+                "github": f"https://github.com/{repo_full_name}",
+                "regex": "(?i)releases/tag/v?([\\d.]+)"
+            },
+            "autoupdate": {
+                "architecture": {
+                    "64bit": {
+                        "url": f"https://github.com/{repo_full_name}/releases/download/v$version/{repo.lower()}-$version-windows-x64.exe"
+                    }
+                }
+            }
+        }
+
+        # Current version URL and hash
+        exe_name = f"{repo.lower()}-{version}-windows-x64.exe"
+        current_url = f"https://github.com/{repo_full_name}/releases/download/v{version}/{exe_name}"
+        
+        manifest["architecture"]["64bit"] = {
+            "url": current_url,
+            "hash": self._get_file_hash(current_url)
+        }
+
+        return manifest
+
+        version = release["tag_name"].lstrip("v")
+        
+        # Get first line of description and clean it
+        description = release.get("body", "").split("\n")[0]
+        if description.startswith(">"):
+            description = description[1:].strip()
+
+        # Base manifest structure
+        manifest = {
+            "version": version,
+            "description": description or f"{repo} - A GitHub release",
+            "homepage": f"https://github.com/{repo_full_name}",
+            "license": self._get_repo_license(owner, repo) or "Unknown",
+            "notes": "",
+            "architecture": {},
+            "pre_install": "",
+            "installer": {
+                "script": ""
+            },
+            "post_install": [""],
+            "uninstaller": {
+                "script": ""
+            },
+            "bin": ["chatbox.exe"],
+            "env_add_path": [""],
+            "persist": [""],
+            "checkver": {
+                "github": f"https://github.com/{repo_full_name}",
+                "regex": "(?i)releases/tag/v?([\\d.]+)"
+            },
+            "autoupdate": {
+                "architecture": {
+                    "64bit": {
+                        "url": f"https://github.com/{repo_full_name}/releases/download/v$version/{repo.lower()}-$version-windows-x64.exe"
+                    }
+                }
+            }
+        }
+
+        # Current version URL and hash
+        exe_name = f"{repo.lower()}-{version}-windows-x64.exe"
+        current_url = f"https://github.com/{repo_full_name}/releases/download/v{version}/{exe_name}"
+        
+        manifest["architecture"]["64bit"] = {
+            "url": current_url,
+            "hash": self._get_file_hash(current_url)
+        }
+
+        return manifest
+        
+        owner, repo = repo_full_name.split("/")
         
         # Get first line of description without '>'
         description = release.get("body", "").split("\n")[0]
