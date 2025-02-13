@@ -1,0 +1,9 @@
+apps:
+  OpenVPN/openvpn-build:
+    last_checked: null
+    patterns:
+      64bit: win10-amd64
+  ventoy/Ventoy:
+    last_checked: '2025-02-12T15:29:04Z'
+    patterns:
+      64bit: windows

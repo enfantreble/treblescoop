@@ -1,0 +1,12 @@
+{
+    "version": "1.1.02",
+    "description": "Automatic update from ventoy/Ventoy",
+    "homepage": "https://github.com/ventoy/Ventoy",
+    "license": "Unknown",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/ventoy/Ventoy/releases/download/v1.1.02/ventoy-1.1.02-windows.zip",
+            "hash": "f992fb0569a2f9ec057c7d97800a13ead7acc57a758953800d8d958d0ae471dc"
+        }
+    }
+}
