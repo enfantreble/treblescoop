@@ -1,4 +1,8 @@
 apps:
+  Bin-Huang/chatbox:
+    last_checked: null
+    patterns:
+      64bit: windows-x64.exe
   OpenVPN/openvpn-build:
     last_checked: null
     patterns:
