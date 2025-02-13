@@ -1,0 +1,36 @@
+{
+    "version": "0.10.4",
+    "description": "> This is a new release of the Chatbox Community Edition. For most users, it's highly recommended to use the Official Edition instead - it's still free and comes with more new features. You can get it here:\r",
+    "homepage": "https://github.com/Bin-Huang/chatbox",
+    "license": "GPL-3.0",
+    "notes": "",
+    "architecture": {},
+    "pre_install": "",
+    "installer": {
+        "script": ""
+    },
+    "post_install": [
+        ""
+    ],
+    "uninstaller": {
+        "script": ""
+    },
+    "bin": "",
+    "env_add_path": [
+        ""
+    ],
+    "persist": [
+        ""
+    ],
+    "checkver": {
+        "github": "https://github.com/Bin-Huang/chatbox",
+        "regex": "(?i)releases/tag/v?([\\d.]+)"
+    },
+    "autoupdate": {
+        "architecture": {},
+        "hash": {
+            "url": "$url.sha256",
+            "regex": "$sha256"
+        }
+    }
+}

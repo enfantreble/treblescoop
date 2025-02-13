@@ -1,12 +1,45 @@
 {
     "version": "1.1.02",
-    "description": "Automatic update from ventoy/Ventoy",
+    "description": "\r",
     "homepage": "https://github.com/ventoy/Ventoy",
-    "license": "Unknown",
+    "license": "GPL-3.0",
+    "notes": "",
     "architecture": {
         "64bit": {
             "url": "https://github.com/ventoy/Ventoy/releases/download/v1.1.02/ventoy-1.1.02-windows.zip",
             "hash": "f992fb0569a2f9ec057c7d97800a13ead7acc57a758953800d8d958d0ae471dc"
+        }
+    },
+    "pre_install": "",
+    "installer": {
+        "script": ""
+    },
+    "post_install": [
+        ""
+    ],
+    "uninstaller": {
+        "script": ""
+    },
+    "bin": "",
+    "env_add_path": [
+        ""
+    ],
+    "persist": [
+        ""
+    ],
+    "checkver": {
+        "github": "https://github.com/ventoy/Ventoy",
+        "regex": "(?i)releases/tag/v?([\\d.]+)"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/ventoy/Ventoy/releases/download/$version/ventoy-1.1.02-windows.zip"
+            }
+        },
+        "hash": {
+            "url": "$url.sha256",
+            "regex": "$sha256"
         }
     }
 }
