@@ -1,1 +1,29 @@
-
+{
+    "version": "0.5.8.0",
+    "description": "Mouse gesture recognition utility for Windows which allows you to create powerful mouse gestures that save you time.",
+    "homepage": "https://www.strokesplus.net",
+    "license": {
+        "identifier": "Freeware",
+        "url": "https://www.strokesplus.net/FAQ"
+    },
+    "url": "https://web.archive.org/web/20251127144157/https://www.strokesplus.net/StrokesPlus.net_Portable_0.5.8.0_trace.zip",
+    "hash": "65F6E61E37AB0125E9CC585DDEC70FEF7A18FF9B56C6E4D4BE842D03AE482BA1",
+    "pre_install": "if (!(Test-Path \"$persist_dir\\strokesplussettings.json\")) { Copy-Item \"$dir\\Default_StrokesPlus.net.json\" \"$dir\\strokesplussettings.json\" }",
+    "shortcuts": [
+        [
+            "StrokesPlus.net.exe",
+            "StrokesPlus.net",
+            "settingsfile=\"$dir\\strokesplussettings.json\""
+        ]
+    ],
+    "persist": "strokesplussettings.json",
+    "pre_uninstall": [
+        "# The following must be done as StrokesPlus deletes the original file which was linked to the persist folder when it saves settings, rather than editing the file.",
+        "Copy-Item \"$dir\\strokesplussettings.json\" \"$persist_dir\\strokesplussettings.json\""
+    ],
+    "checkver": {
+        "regex": "StrokesPlus.net_Portable_([\\d.]+)_Trace\\.zip"
+    },
+    "autoupdate": {
+       "url": "https://web.archive.org/web/20251127144157/https://www.strokesplus.net/StrokesPlus.net_Portable_$version_Trace.zip",
+    }
